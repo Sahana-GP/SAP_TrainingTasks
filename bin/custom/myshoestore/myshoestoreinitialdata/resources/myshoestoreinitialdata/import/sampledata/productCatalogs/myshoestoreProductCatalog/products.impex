@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products
+
+# Macros / Replacement Parameter definitions
+$productCatalog=myshoestoreProductCatalog
+ 
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=jp-vat-full]
+ 
+# Insert Products
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved;$taxGroup
+ ;0001;men;Nike pvt;Nike-1;pieces;pieces;ElectronicsColorVariantProduct;
+ ;0002;men;Reebok pvt;Reebok-1;pieces;
+ ;0003;men;Puma pvt;Puma-1;pieces;
+ 
+ ;0100;women;Nike pvt;Nike-2;pieces;pieces;ElectronicsColorVariantProduct;
+ ;0101;women;Reebok pvt;Reebok-2;pieces;
+ ;0102;women;Puma pvt;Puma-2;pieces;
+ 
+ ;0200;kids;Nike pvt;Nike-3;pieces;pieces;ElectronicsColorVariantProduct;
+ ;0201;kids;Reebok pvt;Reebok-3;pieces;
+ ;0202;kids;Puma pvt;Puma-3;pieces;

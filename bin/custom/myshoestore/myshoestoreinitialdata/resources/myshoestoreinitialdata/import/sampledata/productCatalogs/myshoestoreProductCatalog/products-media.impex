@@ -1,0 +1,115 @@
+$productCatalog=myshoestoreProductCatalog
+$storeName=myshoestore
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog]
+$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:org.myshoestore.initialdata.setup.InitialDataSystemSetup&/myshoestoreinitialdata/import/sampledata/productCatalogs/$productCatalog/images
+ 
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+ 
+# Create Media
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)
+;1200Wx1200H;/1200Wx1200H/Nike_men.jpg;$siteResource/1200Wx1200H/Nike_men.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Nike_women.jpg;$siteResource/1200Wx1200H/Nike_women.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Nike_kids.jpg;$siteResource/1200Wx1200H/Nike_kids.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Reebok_men.jpg;$siteResource/1200Wx1200H/Reebok_men.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Reebok_women.jpg;$siteResource/1200Wx1200H/Reebok_women.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Reebok_kids.jpg;$siteResource/1200Wx1200H/Reebok_kids.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Puma_men.jpg;$siteResource/1200Wx1200H/Puma_men.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Puma_women.jpg;$siteResource/1200Wx1200H/Puma_women.jpg;;;images
+;1200Wx1200H;/1200Wx1200H/Puma_kids.jpg;$siteResource/1200Wx1200H/Puma_kids.jpg;;;images
+
+
+;515Wx515H;/515Wx515H/Nike_men.jpg;$siteResource/515Wx515H/Nike_men.jpg;;;images
+;515Wx515H;/515Wx515H/Nike_women.jpg;$siteResource/515Wx515H/Nike_women.jpg;;;images
+;515Wx515H;/515Wx515H/Nike_kids.jpg;$siteResource/515Wx515H/Nike_kids.jpg;;;images
+;515Wx515H;/515Wx515H/Reebok_men.jpg;$siteResource/515Wx515H/Reebok_men.jpg;;;images
+;515Wx515H;/515Wx515H/Reebok_women.jpg;$siteResource/515Wx515H/Reebok_women.jpg;;;images
+;515Wx515H;/515Wx515H/Reebok_kids.jpg;$siteResource/515Wx515H/Reebok_kids.jpg;;;images
+;515Wx515H;/515Wx515H/Puma_men.jpg;$siteResource/515Wx515H/Puma_men.jpg;;;images
+;515Wx515H;/515Wx515H/Puma_women.jpg;$siteResource/515Wx515H/Puma_women.jpg;;;images
+;515Wx515H;/515Wx515H/Puma_kids.jpg;$siteResource/515Wx515H/Puma_kids.jpg;;;images
+
+
+;300Wx300H;/300Wx300H/Nike_men.jpg;$siteResource/300Wx300H/Nike_men.jpg;;;images
+;300Wx300H;/300Wx300H/Nike_women.jpg;$siteResource/300Wx300H/Nike_women.jpg;;;images
+;300Wx300H;/300Wx300H/Nike_kids.jpg;$siteResource/300Wx300H/Nike_kids.jpg;;;images
+;300Wx300H;/300Wx300H/Reebok_men.jpg;$siteResource/300Wx300H/Reebok_men.jpg;;;images
+;300Wx300H;/300Wx300H/Reebok_women.jpg;$siteResource/300Wx300H/Reebok_women.jpg;;;images
+;300Wx300H;/300Wx300H/Reebok_kids.jpg;$siteResource/300Wx300H/Reebok_kids.jpg;;;images
+;300Wx300H;/300Wx300H/Puma_men.jpg;$siteResource/300Wx300H/Puma_men.jpg;;;images
+;300Wx300H;/300Wx300H/Puma_women.jpg;$siteResource/300Wx300H/Puma_women.jpg;;;images
+;300Wx300H;/300Wx300H/Puma_kids.jpg;$siteResource/300Wx300H/Puma_kids.jpg;;;images
+
+
+;96Wx96H;/96Wx96H/Nike_men.jpg;$siteResource/96Wx96H/Nike_men.jpg;;;images
+;96Wx96H;/96Wx96H/Nike_women.jpg;$siteResource/96Wx96H/Nike_women.jpg;;;images
+;96Wx96H;/96Wx96H/Nike_kids.jpg;$siteResource/96Wx96H/Nike_kids.jpg;;;images
+;96Wx96H;/96Wx96H/Reebok_men.jpg;$siteResource/96Wx96H/Reebok_men.jpg;;;images
+;96Wx96H;/96Wx96H/Reebok_women.jpg;$siteResource/96Wx96H/Reebok_women.jpg;;;images
+;96Wx96H;/96Wx96H/Reebok_kids.jpg;$siteResource/96Wx96H/Reebok_kids.jpg;;;images
+;96Wx96H;/96Wx96H/Puma_men.jpg;$siteResource/96Wx96H/Puma_men.jpg;;;images
+;96Wx96H;/96Wx96H/Puma_women.jpg;$siteResource/96Wx96H/Puma_women.jpg;;;images
+;96Wx96H;/96Wx96H/Puma_kids.jpg;$siteResource/96Wx96H/Puma_kids.jpg;;;images
+
+
+;65Wx65H;/65Wx65H/Nike_men.jpg;$siteResource/65Wx65H/Nike_men.jpg;;;images
+;65Wx65H;/65Wx65H/Nike_women.jpg;$siteResource/65Wx65H/Nike_women.jpg;;;images
+;65Wx65H;/65Wx65H/Nike_kids.jpg;$siteResource/65Wx65H/Nike_kids.jpg;;;images
+;65Wx65H;/65Wx65H/Reebok_men.jpg;$siteResource/65Wx65H/Reebok_men.jpg;;;images
+;65Wx65H;/65Wx65H/Reebok_women.jpg;$siteResource/65Wx65H/Reebok_women.jpg;;;images
+;65Wx65H;/65Wx65H/Reebok_kids.jpg;$siteResource/65Wx65H/Reebok_kids.jpg;;;images
+;65Wx65H;/65Wx65H/Puma_men.jpg;$siteResource/65Wx65H/Puma_men.jpg;;;images
+;65Wx65H;/65Wx65H/Puma_women.jpg;$siteResource/65Wx65H/Puma_women.jpg;;;images
+;65Wx65H;/65Wx65H/Puma_kids.jpg;$siteResource/65Wx65H/Puma_kids.jpg;;;images
+
+
+;30Wx30H;/30Wx30H/Nike_men.jpg;$siteResource/30Wx30H/Nike_men.jpg;;;images
+;30Wx30H;/30Wx30H/Nike_women.jpg;$siteResource/30Wx30H/Nike_women.jpg;;;images
+;30Wx30H;/30Wx30H/Nike_kids.jpg;$siteResource/30Wx30H/Nike_kids.jpg;;;images
+;30Wx30H;/30Wx30H/Reebok_men.jpg;$siteResource/30Wx30H/Reebok_men.jpg;;;images
+;30Wx30H;/30Wx30H/Reebok_women.jpg;$siteResource/30Wx30H/Reebok_women.jpg;;;images
+;30Wx30H;/30Wx30H/Reebok_kids.jpg;$siteResource/30Wx30H/Reebok_kids.jpg;;;images
+;30Wx30H;/30Wx30H/Puma_men.jpg;$siteResource/30Wx30H/Puma_men.jpg;;;images
+;30Wx30H;/30Wx30H/Puma_women.jpg;$siteResource/30Wx30H/Puma_women.jpg;;;images
+;30Wx30H;/30Wx30H/Puma_kids.jpg;$siteResource/30Wx30H/Puma_kids.jpg;;;images
+
+
+# Create Media Containers
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+;0001_1.jpg;/1200Wx1200H/Nike_men.jpg,/515Wx515H/Nike_men.jpg,/300Wx300H/Nike_men.jpg,/96Wx96H/Nike_men.jpg,/65Wx65H/Nike_men.jpg,/30Wx30H/Nike_men.jpg
+;0002_1.jpg;/1200Wx1200H/Reebok_men.jpg,/515Wx515H/Reebok_men.jpg,/300Wx300H/Reebok_men.jpg,/96Wx96H/Reebok_men.jpg,/65Wx65H/Reebok_men.jpg,/30Wx30H/Reebok_men.jpg
+;0003_1.jpg;/1200Wx1200H/Puma_men.jpg,/515Wx515H/Puma_men.jpg,/300Wx300H/Puma_men.jpg,/96Wx96H/Puma_men.jpg,/65Wx65H/Puma_men.jpg,/30Wx30H/Puma_men.jpg
+
+;0100_1.jpg;/1200Wx1200H/Nike_women.jpg,/515Wx515H/Nike_women.jpg,/300Wx300H/Nike_women.jpg,/96Wx96H/Nike_women.jpg,/65Wx65H/Nike_women.jpg,/30Wx30H/Nike_women.jpg
+;0101_1.jpg;/1200Wx1200H/Reebok_women.jpg,/515Wx515H/Reebok_women.jpg,/300Wx300H/Reebok_women.jpg,/96Wx96H/Reebok_women.jpg,/65Wx65H/Reebok_women.jpg,/30Wx30H/Reebok_women.jpg
+;0102_1.jpg;/1200Wx1200H/Puma_women.jpg,/515Wx515H/Puma_women.jpg,/300Wx300H/Puma_women.jpg,/96Wx96H/Puma_women.jpg,/65Wx65H/Puma_women.jpg,/30Wx30H/Puma_women.jpg
+
+;0200_1.jpg;/1200Wx1200H/Nike_kids.jpg,/515Wx515H/Nike_kids.jpg,/300Wx300H/Nike_kids.jpg,/96Wx96H/Nike_kids.jpg,/65Wx65H/Nike_kids.jpg,/30Wx30H/Nike_kids.jpg
+;0201_1.jpg;/1200Wx1200H/Reebok_kids.jpg,/515Wx515H/Reebok_kids.jpg,/300Wx300H/Reebok_kids.jpg,/96Wx96H/Reebok_kids.jpg,/65Wx65H/Reebok_kids.jpg,/30Wx30H/Reebok_kids.jpg
+;0202_1.jpg;/1200Wx1200H/Puma_kids.jpg,/515Wx515H/Puma_kids.jpg,/300Wx300H/Puma_kids.jpg,/96Wx96H/Puma_kids.jpg,/65Wx65H/Puma_kids.jpg,/30Wx30H/Puma_kids.jpg
+
+ 
+# Update Products with Media and Media Containers
+INSERT_UPDATE Product;code[unique=true];$catalogVersion;$galleryImages;$picture;$thumbnail
+ ;0001;;0001_1.jpg;/300Wx300H/Nike_men.jpg;/96Wx96H/Nike_men.jpg
+ ;0002;;0002_1.jpg;/300Wx300H/Reebok_men.jpg;/96Wx96H/Reebok_men.jpg
+ ;0003;;0003_1.jpg;/300Wx300H/Puma_men.jpg;/96Wx96H/Puma_men.jpg
+ 
+ ;0100;;0100_1.jpg;/300Wx300H/Nike_women.jpg;/96Wx96H/Nike_women.jpg
+ ;0101;;0101_1.jpg;/300Wx300H/Reebok_women.jpg;/96Wx96H/Reebok_women.jpg
+ ;0102;;0102_1.jpg;/300Wx300H/Puma_women.jpg;/96Wx96H/Puma_women.jpg
+
+ ;0200;;0200_1.jpg;/300Wx300H/Nike_kids.jpg;/96Wx96H/Nike_kids.jpg
+ ;0201;;0201_1.jpg;/300Wx300H/Reebok_kids.jpg;/96Wx96H/Reebok_kids.jpg
+ ;0202;;0202_1.jpg;/300Wx300H/Puma_kids.jpg;/96Wx96H/Puma_kids.jpg

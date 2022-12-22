@@ -1,0 +1,21 @@
+$productCatalog=myshoestoreProductCatalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+# Language
+$lang=en
+ 
+UPDATE Product;$catalogVersion;code[unique=true];name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+;;0001;Nike_men;A running shoes;This is a Nike brand running shoes for men
+;;0002;Reebok_men;A walking shoes;This is a Reebok brand running shoes for men
+;;0003;Puma_men;A sports shoes;This is a Nike brand running shoes for men
+
+
+
+;;0100;Nike_women;A running shoes;This is a Nike brand running shoes for women
+;;0101;Reebok_women;A running shoes;This is a Reebok brand running shoes for women
+;;0102;Puma_women;A running shoes;This is a Puma brand running shoes for women
+
+;;0200;Nike_kids;A running shoes;This is a Nike brand running shoes for kids
+;;0201;Reebok_kids;A running shoes;This is a Reebok brand running shoes for kids
+;;0202;Puma_kids;A running shoes;This is a Puma brand running shoes for kids

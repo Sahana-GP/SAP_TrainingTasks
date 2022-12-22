@@ -1,0 +1,20 @@
+$productCatalog=myshoestoreProductCatalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+# Insert Product References
+INSERT_UPDATE ProductReference;source(code,$catalogVersion)[unique=true];target(code,$catalogVersion)[unique=true];referenceType(code);active[default=true];preselected[default=false]
+;0001;0002;SIMILAR;true;false
+;0001;0003;SIMILAR;true;false
+;0001;0100;OTHERS;true;false
+;0001;0200;OTHERS;true;false
+
+;0100;0101;SIMILAR;true;false
+;0100;0102;SIMILAR;true;false
+;0100;0002;OTHERS;true;false
+;0100;0200;OTHERS;true;false
+
+;0200;0201;SIMILAR;true;false
+;0200;0202;SIMILAR;true;false
+;0200;0003;OTHERS;true;false
+;0200;0101;OTHERS;true;false

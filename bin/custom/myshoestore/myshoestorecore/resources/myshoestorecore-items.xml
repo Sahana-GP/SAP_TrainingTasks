@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <collectiontypes>
+        <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
+        <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
+                        type="set"/>
+    </collectiontypes>
+
+    <enumtypes>
+
+        <enumtype code="WorkTypeEnumeration" generate="true" autocreate="true" dynamic="false">
+            <value code="WORKFROMHOME"></value>
+            <value code="WORKFROMOFFICE"></value>
+        </enumtype>
+
+        <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
+            <value code="BLACK"/>
+            <value code="BLUE"/>
+            <value code="BROWN"/>
+            <value code="GREEN"/>
+            <value code="GREY"/>
+            <value code="ORANGE"/>
+            <value code="PINK"/>
+            <value code="PURPLE"/>
+            <value code="RED"/>
+            <value code="SILVER"/>
+            <value code="WHITE"/>
+            <value code="YELLOW"/>
+        </enumtype>
+    </enumtypes>
+
+    <itemtypes>
+
+        <itemtype code="Product" autocreate="false" generate="false">
+            <attributes>
+                <attribute autocreate="true" qualifier="alias" type="java.lang.String"
+                           generate="true">
+                    <persistence type="property" />
+                    <modifiers read="true" write="true" search="true"
+                               initial="true" optional="true" unique="false" />
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="HelloWorldCronJob" extends="CronJob" jaloclass="org.myshoestore.core.jalo.HelloWorldCronJob">
+            <attributes>
+                <attribute qualifier="name" type="java.lang.String">
+                    <modifiers/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code=""   extends="GenericItem" autocreate="true"  generate="true">
+
+            <deployment table="" typecode="25221" />
+
+            <attributes>
+
+                <attribute type="java.lang.String" qualifier="empid"  autocreate="true" generate="true">
+                    <persistence type="property" />
+                    <modifiers search="true" optional="false" unique="true" read="true" write ="true" />
+                    <description>Employee ID</description>
+                </attribute>
+
+                <attribute type="java.lang.String" qualifier="name" autocreate="true" generate="true">
+                    <persistence type="property" />
+                    <modifiers search="true" optional="false" unique="false" read="true" write ="true" />
+                    <description>Employee Name</description>
+                </attribute>
+
+                <attribute type="java.lang.Double" qualifier="salary" autocreate="true" generate="true">
+                    <persistence type="property" />
+                    <modifiers search="true" optional="false" unique="false" read="true" write ="true" />
+                    <description>Employee salary</description>
+                </attribute>
+
+                <attribute qualifier="employeeWorkType" type="WorkTypeEnumeration">
+                    <description>Employee Work Type</description>
+                    <modifiers search="true" read="true" write ="true" optional="false" unique="false" ></modifiers>
+                    <persistence type="property"></persistence>
+                </attribute>
+
+                <attribute autocreate="true" qualifier="employee_company_age" type="java.lang.Integer">
+                    <modifiers write="false"/>
+                    <persistence type="dynamic" attributeHandler="employeeCompanyAge"/>
+                    <description>Dynamic attribute for employee company age</description>
+                </attribute>
+
+            </attributes>
+        </itemtype>
+    
+    <itemtype code="Product" autocreate="false" generate="false">
+        <attributes>
+        <attribute autocreate="true" qualifier="productQRCode" type="BarcodeMedia">
+					<modifiers read="true" write="true" search="false"
+						optional="true" />
+					<persistence type="property" />
+				</attribute>
+        </attributes>
+        </itemtype>
+
+        <!-- Add your item definitions here -->
+        
+       <itemtype code="Customer" autocreate="false" generate="false">
+        <attributes>
+        <attribute type="localized:java.lang.Integer" qualifier="loyalityPoints">
+        <description>Loyality Points of User</description>
+        <modifiers optional="true" />
+        <persistence type="property"></persistence>
+        </attribute>
+        </attributes>
+        </itemtype>
+
+
+        <!-- TypeGroups are for structure of this file only -->
+
+        <typegroup name="Apparel">
+            <itemtype code="ApparelProduct" extends="Product"
+                      autocreate="true" generate="true"
+                      jaloclass="org.myshoestore.core.jalo.ApparelProduct">
+                <description>Base apparel product extension that contains additional attributes.</description>
+                <attributes>
+                    <attribute qualifier="genders" type="GenderList">
+                        <description>List of genders that the ApparelProduct is designed for</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="org.myshoestore.core.jalo.ApparelStyleVariantProduct">
+                <description>Apparel style variant type that contains additional attribute describing variant style.
+                </description>
+                <attributes>
+                    <attribute qualifier="style" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color/Pattern of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="swatchColors" type="SwatchColorSet">
+                        <description>A normalized color mapping to a standardized front-end navigable name.
+                        </description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+
+            </itemtype>
+
+            <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="org.myshoestore.core.jalo.ApparelSizeVariantProduct">
+                <description>Apparel size variant type that contains additional attribute describing variant size.
+                </description>
+                <attributes>
+                    <attribute qualifier="size" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Size of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="Electronics">
+            <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="org.myshoestore.core.jalo.ElectronicsColorVariantProduct">
+                <description>Electronics color variant type that contains additional attribute describing variant color.
+                </description>
+                <attributes>
+                    <attribute qualifier="color" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+    </itemtypes>
+</items>

@@ -1,0 +1,72 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration
+       http://www.springframework.org/schema/integration/spring-integration.xsd
+       http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <context:annotation-config/>
+    <bean id="baseDirectoryEmployee" class="java.lang.String">
+        <constructor-arg value="#{baseDirectory}/${tenantId}/employee" />
+    </bean>
+    <!-- 1) Scan for files -->
+    <file:inbound-channel-adapter id="batchFilesEmployee" directory="#{baseDirectoryEmployee}"
+                                  filename-regex="^(.*)-(\d+)\.csv" comparator="fileOrderComparator">
+        <int:poller fixed-rate="1000" />
+    </file:inbound-channel-adapter>
+
+
+
+    <!-- 2) move the file to processing and setup header -->
+    <file:outbound-gateway request-channel="batchFilesEmployee" reply-channel="batchFilesEmployeeProc"
+                           directory="#{baseDirectoryEmployee}/processing" delete-source-files="true" />
+    <int:service-activator
+            input-channel="batchFilesEmployeeProc"
+            output-channel="batchFilesHeaderInit"
+            ref="employeeHeaderSetupTask" method="execute" />
+    <bean id="employeeHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+        <property name="catalog" value="employeeProductCatalog" />
+        <property name="net" value="false" />
+        <property name="storeBaseDirectory" ref="baseDirectoryEmployee" />
+    </bean>
+
+
+    <bean id="hotfolderEmployeeConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="myemployee" p:converter-ref="hotfolderEmployeeConverter" />
+
+
+
+
+    <bean id="employeeImpexHeader" class="java.lang.String">
+        <constructor-arg>
+            <value># ImpEx for importing data into $CATALOG$
+                $version=Staged
+                $productCatalog=myshoestoreProductCatalog
+                $catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default=$version])[unique=true,default=$productCatalog:$version]
+                $lang=en
+                $approved=approvalstatus(code)[default='approved']
+            </value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="hotfolderEmployeeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>#{employeeImpexHeader}
+                INSERT_UPDATE MyEmployee; empid[unique=true]; name; salary; employeeWorkType(code)</value>
+        </property>
+        <property name="impexRow">
+            <value>;{+0};{1};{2};{3}</value>
+        </property>
+        <property name="type" value="MyEmployee"/>
+    </bean>
+
+
+
+
+</beans>

@@ -1,0 +1,33 @@
+$productCatalog=myshoestoreProductCatalog
+   
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+   
+# Set product approval status to Approved only for those products that have prices.
+$approved=approvalstatus(code)[default='approved']
+  
+UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;
+ ;0001;5,00 GBP, 5,50 EUR, 7,48 USD, 765,33 JPY
+ ;0002;2,50 GBP, 2,75 EUR, 3,74 USD, 382,66 JPY
+ ;0003;5,00 GBP, 5,50 EUR, 7,48 USD, 765,33 JPY
+ 
+ ;0001_red;18,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0001_green;18,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0001_blue;18,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+
+ ;0100;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0101;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0102;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+
+ ;0100_red;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0100_green;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+ ;0100_blue;20,00 GBP, 22,00 EUR, 29,92 USD, 3061,30 JPY
+
+ ;0200;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+ ;0201;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+ ;0202;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+
+ ;0200_red;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+ ;0200_green;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+ ;0200_blue;30,00 GBP, 33,00 EUR, 44,88 USD, 4591,95 JPY
+ 

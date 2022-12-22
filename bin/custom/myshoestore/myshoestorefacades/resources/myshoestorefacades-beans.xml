@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;org.myshoestore.facades.product.data.GenderData>"/>
+		<property name="productQRCodeMedia" type="de.hybris.platform.cmsfacades.data.MediaData" />
+		<property name="alias" type="String"/>
+		<property name="unit" type="String"/>
+	</bean>
+
+	<bean class="org.myshoestore.facades.product.data.GenderData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+	
+	<bean class="org.myshoestore.facades.LoyalityData">
+    <property name="userName" type="String"></property>
+    <property name="initialLoyality" type="Integer"/>
+    <property name="updatedLoyality" type="Integer"/>
+    </bean>
+
+	<bean class="org.myshoestore.facades.product.data.MyEmployeeData">
+		<property name="empid" type="java.lang.String"/>
+		<property name="name" type="java.lang.String"/>
+		<property name="salary" type="java.lang.Double"/>
+		<property name="employeeWorkType" type="org.myshoestore.core.enums.WorkTypeEnumeration"/>
+		<property name="employee_company_age" type="java.lang.Integer"/>
+	</bean>
+
+	<bean class="org.myshoestore.facades.Student.data.StudentData">
+		<property name="studentId" type="java.lang.String"/>
+		<property name="studentName" type="java.lang.String"/>
+		<property name="studentPlace" type="java.lang.String"/>
+		<property name="studentGuardian" type="java.lang.String"/>
+	</bean>
+	
+</beans>

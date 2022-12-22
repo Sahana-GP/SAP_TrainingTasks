@@ -1,0 +1,27 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Suppliers
+
+# Macros / Replacement Parameter definitions
+$productCatalog=myshoestoreProductCatalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$superCategories=superCategories(code, $catalogVersion)
+ 
+# Create Supplier Categories
+INSERT_UPDATE Category;code[unique=true];$superCategories;allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+ ;Nike;;
+ ;Nike_men;Nike
+ ;Nike_women;Nike
+ ;Nike_kids;Nike
+ 
+ ;Reebok;;
+ ;Reebok_men;Reebok
+ ;Reebok_women;Reebok
+ ;Reebok_kids;Reebok
+ 
+ ;Puma;;
+ ;Puma_men;Puma
+ ;Puma_women;Puma
+ ;Puma_kids;Puma

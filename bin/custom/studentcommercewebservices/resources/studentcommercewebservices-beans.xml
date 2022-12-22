@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<enum class="org.studentcommercewebservices.populator.options.PaymentInfoOption">
+		<value>BASIC</value>
+		<value>BILLING_ADDRESS</value>
+	</enum>
+
+	<!--auth response  -->
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.Student.StudentDataWSDTO">
+		<property name="studentId" type="java.lang.String"/>
+		<property name="studentName" type="java.lang.String"/>
+		<property name="studentPlace" type="java.lang.String"/>
+		<property name="studentGuardian" type="java.lang.String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.Student.StudentDataListWSDTO">
+		<property name="student" type="java.util.List &lt;de.hybris.platform.commercewebservicescommons.dto.Student.StudentDataWSDTO>"/>
+	</bean>
+
+	<bean class="org.anchor.queues.data.StudentDataList">
+		<property name="student" type="java.util.List &lt;org.myshoestore.facades.Student.data.StudentData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.auth.data.LogoutResponse">
+		<property name="success" type="boolean"/>
+	</bean>
+
+	<!-- storesession data -->
+
+	<bean class="org.studentcommercewebservices.storesession.data.LanguageDataList">
+		<property name="languages"
+		          type="java.util.Collection&lt;de.hybris.platform.commercefacades.storesession.data.LanguageData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.storesession.data.CurrencyDataList">
+		<property name="currencies"
+		          type="java.util.Collection&lt;de.hybris.platform.commercefacades.storesession.data.CurrencyData>"/>
+	</bean>
+
+	<!-- order data -->
+
+	<bean class="org.studentcommercewebservices.order.data.CartDataList">
+		<property name="carts"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.CartData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.order.data.OrderEntryDataList">
+		<property name="orderEntries"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.OrderEntryData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.order.data.CardTypeDataList">
+		<property name="cardTypes"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.CardTypeData>"/>
+	</bean>
+
+	<!-- product data -->
+
+	<bean class="org.studentcommercewebservices.product.data.ProductDataList">
+		<property name="products"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>"/>
+		<property name="catalog" type="String"/>
+		<property name="version" type="String"/>
+		<property name="totalProductCount" type="int"/>
+		<property name="totalPageCount" type="int"/>
+		<property name="currentPage" type="int"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.product.data.PromotionDataList">
+		<property name="promotions"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.PromotionData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.product.data.PromotionResultDataList">
+		<property name="promotions"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.PromotionResultData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.product.data.ReviewDataList">
+		<property name="reviews" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ReviewData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.product.data.SuggestionDataList">
+		<property name="suggestions"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.SuggestionData>"/>
+	</bean>
+
+	<!-- user data -->
+
+	<bean class="org.studentcommercewebservices.user.data.TitleDataList">
+		<property name="titles" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.TitleData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.user.data.CountryDataList">
+		<property name="countries" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.CountryData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.user.data.RegionDataList">
+		<property name="regions"
+				  type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.RegionData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.user.data.AddressDataList">
+		<property name="addresses" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.AddressData>"/>
+	</bean>
+
+	<!-- voucher data -->
+	<bean class="org.studentcommercewebservices.voucher.data.VoucherDataList">
+		<property name="vouchers"
+		          type="java.util.List&lt;de.hybris.platform.commercefacades.voucher.data.VoucherData>"/>
+	</bean>
+
+	<!-- validation data -->
+	<bean class="org.studentcommercewebservices.validation.data.AddressValidationData">
+		<property name="errors" type="de.hybris.platform.webservicescommons.dto.error.ErrorListWsDTO"/>
+		<property name="decision" type="String"/>
+		<property name="suggestedAddressesList"
+		          type="org.studentcommercewebservices.user.data.AddressDataList"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.validation.data.CartVoucherValidationData">
+		<property name="subject" type="String" />
+	</bean>
+
+	<bean class="org.studentcommercewebservices.validation.data.CartVoucherValidationDataList">
+		<property name="CartVoucherValidationDataList"
+				  type="java.util.List&lt;org.studentcommercewebservices.validation.data.CartVoucherValidationData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.user.data.LoginChangeResponse">
+		<property name="success" type="boolean"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.user.data.PasswordRestoreResponse">
+		<property name="success" type="boolean"/>
+	</bean>
+
+	<!-- update queues -->
+
+	<bean class="org.studentcommercewebservices.queues.data.ProductExpressUpdateElementData">
+		<property name="code" type="String"/>
+		<property name="catalogId" type="String"/>
+		<property name="catalogVersion" type="String"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.queues.data.ProductExpressUpdateElementDataList">
+		<property name="productExpressUpdateElements"
+		          type="java.util.List&lt;org.studentcommercewebservices.queues.data.ProductExpressUpdateElementData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.queues.data.OrderStatusUpdateElementData">
+		<property name="code" type="String"/>
+		<property name="status" type="String"/>
+		<property name="baseSiteId" type="String"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.queues.data.OrderStatusUpdateElementDataList">
+		<property name="orderStatusUpdateElements"
+		          type="java.util.List&lt;org.studentcommercewebservices.queues.data.OrderStatusUpdateElementData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.store.data.StoreCountListData">
+		<property name="countriesAndRegionsStoreCount"
+				  type="java.util.List&lt;de.hybris.platform.commercefacades.store.data.StoreCountData>"/>
+	</bean>
+
+	<!-- Consent management -->
+	<bean class="org.studentcommercewebservices.consent.data.ConsentTemplateDataList">
+		<property name="consentTemplates"
+				  type="java.util.List&lt;de.hybris.platform.commercefacades.consent.data.ConsentTemplateData>"/>
+	</bean>
+
+	<!-- Base Sites -->
+	<bean class="org.studentcommercewebservices.basesite.data.BaseSiteDataList">
+		<property name="baseSites"
+				  type="java.util.List&lt;de.hybris.platform.commercefacades.basesite.data.BaseSiteData>"/>
+	</bean>
+
+	<bean class="org.studentcommercewebservices.returns.data.ReturnRequestsData">
+		<property name="returnRequests"
+				  type="java.util.List&lt;de.hybris.platform.ordermanagementfacades.returns.data.ReturnRequestData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+</beans>
